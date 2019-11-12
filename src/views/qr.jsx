@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { View, Image, TouchableOpacity } from "react-native";
 import { Text, Layout } from "react-native-ui-kitten";
 import Banner from "../components/banner";
-import QRCode from "react-native-qrcode-svg";
+import QRCode from "react-native-qrcode";
 import { styles } from "../styles/qrcode.style";
 import { sharedStyles } from "../styles/shared.style";
 import { GetTokenInfo, $axios, SaveFirstTimer } from "../utilities/helper";
@@ -48,48 +48,58 @@ export default class Welcome extends Component {
     }
     render() {
         return (
-            <Layout style={styles.layout}>
-                <Banner>
-                    <View
-                        style={{
-                            display: "flex",
-                            flexDirection: "row",
-                            justifyContent: "center",
-                            alignItems: "center"
-                        }}
-                    >
-                        <Text style={{ fontSize: 18, paddingRight: 10 }}>Your QR Code is Ready</Text>
-                        <Image
-                            style={{ resizeMode: "contain", width: 20, height: 20 }}
-                            source={require("../../assets/icons/correct.png")}
-                        />
-                    </View>
-                </Banner>
-                <View style={styles.qr}>
-                    <QRCode
+          <Layout style={styles.layout}>
+            <Banner>
+              <View
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "center",
+                  alignItems: "center"
+                }}
+              >
+                <Text style={{ fontSize: 18, paddingRight: 10 }}>
+                  Your QR Code is Ready
+                </Text>
+                <Image
+                  style={{ resizeMode: "contain", width: 20, height: 20 }}
+                  source={require("../../assets/icons/correct.png")}
+                />
+              </View>
+            </Banner>
+            <View style={styles.qr}>
+              {/* <QRCode
                         value={this.state.value.trim() !== "" ? this.state.value : "NA"}
                         size={200}
                         color="black"
                         backgroundColor="white"
-                    ></QRCode>
-                </View>
-                <View style={{ width: "70%", marginTop: 30 }}>
-                    <Text
-                        style={{
-                            padding: 10,
-                            textAlign: "center",
-                            color: "#2B41AF",
-                            fontSize: 20,
-                            fontWeight: "600"
-                        }}
-                    >
-                        Hooray!!
-                    </Text>
-                    <Text style={{ textAlign: "center", color: "#2B41AF", fontSize: 15 }}>
-                        Landmark Citizen ID created successfully!
-                    </Text>
-                </View>
-            </Layout>
+                    ></QRCode> */}
+              <QRCode
+                value={this.state.value.trim() !== "" ? this.state.value : "NA"}
+                size={200}
+                bgColor="purple"
+                fgColor="white"
+              />
+            </View>
+            <View style={{ width: "70%", marginTop: 30 }}>
+              <Text
+                style={{
+                  padding: 10,
+                  textAlign: "center",
+                  color: "#2B41AF",
+                  fontSize: 20,
+                  fontWeight: "600"
+                }}
+              >
+                Hooray!!
+              </Text>
+              <Text
+                style={{ textAlign: "center", color: "#2B41AF", fontSize: 15 }}
+              >
+                Landmark Citizen ID created successfully!
+              </Text>
+            </View>
+          </Layout>
         );
     }
 }
