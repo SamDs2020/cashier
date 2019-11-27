@@ -1,11 +1,16 @@
 import React, { Component } from "react";
-import { View, Image, TouchableOpacity } from "react-native";
+import { Surface } from "react-native-paper";
+import { View, Image, Dimensions, Platform } from "react-native";
 import { Text, Layout } from "react-native-ui-kitten";
 import Banner from "../components/banner";
 import QRCode from "react-native-qrcode";
+import QR from "react-native-qrcode-svg";
 import { styles } from "../styles/qrcode.style";
 import { sharedStyles } from "../styles/shared.style";
 import { GetTokenInfo, $axios, SaveFirstTimer } from "../utilities/helper";
+
+
+const { width, height } = Dimensions.get("screen");
 
 export default class Welcome extends Component {
     constructor(props) {
@@ -46,6 +51,8 @@ export default class Welcome extends Component {
                 console.log(error.response.data.error);
             });
     }
+
+
     render() {
         return (
           <Layout style={styles.layout}>
@@ -67,22 +74,37 @@ export default class Welcome extends Component {
                 />
               </View>
             </Banner>
-            <View style={styles.qr}>
-              {/* <QRCode
-                        value={this.state.value.trim() !== "" ? this.state.value : "NA"}
-                        size={200}
-                        color="black"
-                        backgroundColor="white"
-                    ></QRCode> */}
-              <QRCode
-                value={this.state.value.trim() !== "" ? this.state.value : "NA"}
-                size={200}
-                bgColor="purple"
-                fgColor="white"
-              />
-            </View>
+            <Surface style={{
+              padding: 20,
+              width: width / 1.7,
+              elevation: 5,
+              borderRadius: 30,
+              justifyContent: "center",
+              alignItems: "center"
+              // height: height / 
+            }}>
+              {Platform.OS === "android" ? (
+                <QRCode
+                  value={
+                    this.state.value.trim() !== "" ? this.state.value : "NA"
+                  }
+                  size={200}
+                  bgColor="purple"
+                  fgColor="white"
+                />
+              ) : (
+                <QR
+                  value={
+                    this.state.value.trim() !== "" ? this.state.value : "NA"
+                  }
+                  size={200}
+                  color="black"
+                  backgroundColor="white"
+                />
+              )}
+            </Surface>
             <View style={{ width: "70%", marginTop: 30 }}>
-              <Text
+              {/* <Text
                 style={{
                   padding: 10,
                   textAlign: "center",
@@ -92,11 +114,16 @@ export default class Welcome extends Component {
                 }}
               >
                 Hooray!!
-              </Text>
+              </Text> */}
               <Text
-                style={{ textAlign: "center", color: "#2B41AF", fontSize: 15 }}
+                style={{ 
+                  textAlign: "center", 
+                  // color: "#2B41AF", 
+                  fontSize: 15 
+                }}
               >
-                Landmark Citizen ID created successfully!
+                Your personal Landmark Citizen ID QR, Show this QR to pay and
+                earn points
               </Text>
             </View>
           </Layout>

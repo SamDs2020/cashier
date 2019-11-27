@@ -23,7 +23,7 @@ class MenuComponent extends React.Component {
                         icon={() => <Image source={require("../../assets/icons/home.png")} />}
                     />
                     <BottomNavigationTab
-                        title="Transaction History"
+                        title="Transaction"
                         icon={() => <Image source={require("../../assets/icons/transaction.png")} />}
                     />
                     <BottomNavigationTab
@@ -33,11 +33,11 @@ class MenuComponent extends React.Component {
                     {/* <BottomNavigationTab
                         title="MyCard"
                         icon={() => <Image source={require("../../assets/icons/credit-card.png")} />}
-                    />
+                    /> */}
                     <BottomNavigationTab
                         title="Profile"
                         icon={() => <Image source={require("../../assets/icons/user.png")} />}
-                    /> */}
+                    />
                 </BottomNavigation>
             </SafeAreaView>
         );

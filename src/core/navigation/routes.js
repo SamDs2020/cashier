@@ -20,7 +20,7 @@ const MenuNavigator = createBottomTabNavigator(
     Home,
     Balance,
     Qr,
-    MyCard,
+    // MyCard,
     Profile
   },
   {
